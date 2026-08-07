@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SURAJ | Official Cinematic Bio & VIP Hub</title>
+  <meta name="description" content="Official Bio Page of SURAJ. Connect on Telegram @TG_SURAJ_OWNER & join the VIP Channel.">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;600;700;900&family=Outfit:wght@500;700;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Canvas Particles & Audio engine script -->
+</head>
+<body class="dark-theme">
+
+  <!-- Background Particle & Canvas FX -->
+  <canvas id="bg-canvas" class="bg-canvas"></canvas>
+  <div class="glow-orb orb-red"></div>
+  <div class="glow-orb orb-dark"></div>
+  <div class="film-grain-overlay"></div>
+
+  <!-- Audio Toggle Floating Button -->
+  <button id="btn-sound" class="sound-floating-btn" title="Toggle Sound FX">
+    <i class="fa-solid fa-volume-xmark" id="sound-icon"></i>
+    <span id="sound-label">SOUND OFF</span>
+  </button>
+
+  <!-- Main Container Card -->
+  <main class="bio-container">
+    
+    <!-- Profile Header Card -->
+    <header class="profile-card">
+      <div class="logo-wrapper">
+        <div class="logo-red-ring"></div>
+        <img src="logo.png" alt="SURAJ Logo" class="profile-logo-img">
+        <div class="status-indicator-badge">
+          <span class="pulse-dot"></span> ONLINE
+        </div>
+      </div>
+
+      <div class="profile-info">
+        <h1 class="profile-name">SURAJ <span class="badge-vip">VERIFIED</span></h1>
+        <p class="profile-handle">@TG_SURAJ_OWNER</p>
+        <p class="profile-tagline">OWNER & FOUNDER • EXCLUSIVE VIP HUB</p>
+      </div>
+
+      <!-- Quick Stats Counter -->
+      <div class="stats-row">
+        <div class="stat-box">
+          <span class="stat-number" id="counter-members">50K+</span>
+          <span class="stat-label">MEMBERS</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label">ACTIVE</span>
+        </div>
+        <div class="stat-divider"></div>
+        <div class="stat-box">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">TRUSTED</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Links & Social Action Buttons -->
+    <section class="links-section">
+      
+      <!-- Primary VIP Channel Button -->
+      <a href="https://t.me/+uE0CDAJlUsE1ZGFl" target="_blank" class="bio-link-card primary-telegram-card">
+        <div class="link-icon">
+          <i class="fa-brands fa-telegram"></i>
+        </div>
+        <div class="link-text">
+          <span class="link-title">JOIN OFFICIAL TELEGRAM CHANNEL</span>
+          <span class="link-sub">Instant Access • Free VIP Content</span>
+        </div>
+        <div class="link-arrow">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+        <div class="card-glow-effect"></div>
+      </a>
+
+      <!-- Direct Contact Owner Button -->
+      <a href="https://t.me/TG_SURAJ_OWNER" target="_blank" class="bio-link-card owner-contact-card">
+        <div class="link-icon red-icon">
+          <i class="fa-solid fa-paper-plane"></i>
+        </div>
+        <div class="link-text">
+          <span class="link-title">DIRECT MESSAGE OWNER</span>
+          <span class="link-sub">@TG_SURAJ_OWNER • Business & Support</span>
+        </div>
+        <div class="link-arrow">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
+      </a>
+
+      <!-- Quick Copy Username Button -->
+      <div class="bio-link-card copy-username-card" id="btn-copy-username">
+        <div class="link-icon gold-icon">
+          <i class="fa-regular fa-copy"></i>
+        </div>
+        <div class="link-text">
+          <span class="link-title" id="copy-title-text">COPY USERNAME</span>
+          <span class="link-sub">@TG_SURAJ_OWNER</span>
+        </div>
+        <div class="copy-badge" id="copy-badge">CLICK TO COPY</div>
+      </div>
+
+    </section>
+
+    <!-- Feature Highlights Showcase -->
+    <section class="features-card">
+      <h3 class="features-heading">⚡ EXCLUSIVE COMMUNITY HIGHLIGHTS</h3>
+      <div class="features-grid">
+        <div class="feature-item">
+          <i class="fa-solid fa-shield-halved feature-icon"></i>
+          <span>Official Verified Hub</span>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-bolt feature-icon"></i>
+          <span>Instant Updates</span>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-crown feature-icon"></i>
+          <span>VIP Premium Access</span>
+        </div>
+        <div class="feature-item">
+          <i class="fa-solid fa-lock-open feature-icon"></i>
+          <span>Private Channel</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bio-footer">
+      <p>© 2026 SURAJ OFFICIAL • ALL RIGHTS RESERVED</p>
+    </footer>
+
+  </main>
+
+  <script src="main.js"></script>
+</body>
+</html>
