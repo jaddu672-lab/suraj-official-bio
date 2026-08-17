@@ -1,5 +1,5 @@
 /* ==========================================================================
-   GYRO X CHEAT LOADER - MAIN INTERACTIVE APP CONTROLLER
+   GYRO X CHEAT LOADER - FIRE & ICE MAIN CONTROLLER (BGMI EDITION)
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -83,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
       soundIcon.className = 'fa-solid fa-volume-high';
       soundStatusText.textContent = 'SFX ON';
       playSound('success');
-      showToast('Futuristic SFX Audio Enabled', 'success');
+      showToast('Audio SFX Enabled', 'success');
     } else {
       soundIcon.className = 'fa-solid fa-volume-xmark';
       soundStatusText.textContent = 'SFX OFF';
@@ -92,12 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // 2. DYNAMIC BACKGROUND PARTICLES CANVAS
+  // 2. DYNAMIC FIRE & ICE PARTICLES CANVAS
   // ==========================================================================
-  const bgCanvas = document.getElementById('cyber-bg-canvas');
+  const bgCanvas = document.getElementById('fire-ice-canvas');
   const ctx = bgCanvas.getContext('2d');
   let particles = [];
-  const particleCount = 45;
+  const particleCount = 50;
 
   function resizeCanvas() {
     bgCanvas.width = window.innerWidth;
@@ -106,18 +106,19 @@ document.addEventListener('DOMContentLoaded', () => {
   window.addEventListener('resize', resizeCanvas);
   resizeCanvas();
 
-  class Particle {
+  class FireIceParticle {
     constructor() {
       this.reset();
     }
     reset() {
       this.x = Math.random() * bgCanvas.width;
       this.y = Math.random() * bgCanvas.height;
-      this.size = Math.random() * 2 + 1;
-      this.speedX = (Math.random() - 0.5) * 0.8;
-      this.speedY = (Math.random() - 0.5) * 0.8;
-      this.color = Math.random() > 0.5 ? 'rgba(0, 229, 255, ' : 'rgba(255, 94, 0, ';
-      this.alpha = Math.random() * 0.5 + 0.2;
+      this.size = Math.random() * 2.5 + 1;
+      this.speedX = (Math.random() - 0.5) * 0.9;
+      this.speedY = (Math.random() - 0.5) * 0.9;
+      this.isFire = Math.random() > 0.5;
+      this.color = this.isFire ? 'rgba(255, 51, 0, ' : 'rgba(0, 229, 255, ';
+      this.alpha = Math.random() * 0.6 + 0.2;
     }
     update() {
       this.x += this.speedX;
@@ -131,15 +132,15 @@ document.addEventListener('DOMContentLoaded', () => {
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
       ctx.fillStyle = this.color + this.alpha + ')';
-      ctx.shadowBlur = 10;
-      ctx.shadowColor = this.color + '0.8)';
+      ctx.shadowBlur = 12;
+      ctx.shadowColor = this.color + '0.9)';
       ctx.fill();
       ctx.shadowBlur = 0;
     }
   }
 
   for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
+    particles.push(new FireIceParticle());
   }
 
   function animateCanvas() {
@@ -149,19 +150,19 @@ document.addEventListener('DOMContentLoaded', () => {
       p.draw();
     });
 
-    // Draw subtle connecting lines
     for (let a = 0; a < particles.length; a++) {
       for (let b = a + 1; b < particles.length; b++) {
         const dx = particles[a].x - particles[b].x;
         const dy = particles[a].y - particles[b].y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 100) {
+        if (dist < 90) {
           ctx.beginPath();
           ctx.moveTo(particles[a].x, particles[a].y);
           ctx.lineTo(particles[b].x, particles[b].y);
-          ctx.strokeStyle = `rgba(0, 229, 255, ${0.15 - dist / 700})`;
-          ctx.lineWidth = 0.6;
+          const strokeColor = particles[a].isFire ? 'rgba(255, 51, 0, ' : 'rgba(0, 229, 255, ';
+          ctx.strokeStyle = `${strokeColor}${0.18 - dist / 600})`;
+          ctx.lineWidth = 0.7;
           ctx.stroke();
         }
       }
@@ -171,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
   animateCanvas();
 
   // ==========================================================================
-  // 3. TOAST NOTIFICATION SYSTEM
+  // 3. TOAST SYSTEM
   // ==========================================================================
   const toastContainer = document.getElementById('toast-container');
 
@@ -195,7 +196,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 4. SCREEN VIEW SWITCHER
+  // 4. SCREEN SWITCHER
   // ==========================================================================
   const screenLogin = document.getElementById('screen-login');
   const screenDashboard = document.getElementById('screen-dashboard');
@@ -213,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ==========================================================================
-  // 5. STEP 1: KEY LOGIN & PASTE CONTROLS
+  // 5. STEP 1: KEY LOGIN
   // ==========================================================================
   const inputLicenseKey = document.getElementById('input-license-key');
   const btnPasteKey = document.getElementById('btn-paste-key');
@@ -221,7 +222,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const maskIcon = document.getElementById('mask-icon');
   const keyLoginForm = document.getElementById('key-login-form');
 
-  // Paste button
   btnPasteKey.addEventListener('click', async () => {
     playSound('click');
     try {
@@ -234,13 +234,12 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       }
     } catch (e) {
-      console.log('Clipboard permission fallback');
+      console.log('Clipboard fallback');
     }
     inputLicenseKey.value = 'GYRO-X98F-2026-PREM';
     showToast('Pasted VIP Demo Key!', 'success');
   });
 
-  // Toggle mask button
   btnToggleMask.addEventListener('click', () => {
     playSound('click');
     if (inputLicenseKey.type === 'password') {
@@ -252,7 +251,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Demo chips click handler
   document.querySelectorAll('.demo-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       playSound('click');
@@ -262,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Submit Login Form
   keyLoginForm.addEventListener('submit', (e) => {
     e.preventDefault();
     const val = inputLicenseKey.value.trim().toUpperCase();
@@ -283,12 +280,11 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('Connecting to Gyro X Cloud Auth Server...', 'cyan');
 
     setTimeout(() => {
-      showToast('HWID Verified! Access Granted.', 'success');
+      showToast('HWID Verified! BGMI Companion Granted.', 'success');
       switchScreen(screenDashboard);
     }, 1200);
   });
 
-  // Logout button
   document.getElementById('btn-logout').addEventListener('click', () => {
     playSound('click');
     switchScreen(screenLogin);
@@ -296,23 +292,8 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // 6. STEP 2: DASHBOARD & GAME SELECTOR
+  // 6. STEP 2: BGMI LAUNCH CONTROLS
   // ==========================================================================
-  const gameCards = document.querySelectorAll('.game-card');
-  let selectedGame = 'bgmi';
-
-  gameCards.forEach(card => {
-    card.addEventListener('click', () => {
-      playSound('click');
-      gameCards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-      selectedGame = card.getAttribute('data-game');
-      const title = card.querySelector('.game-title').textContent;
-      showToast(`Target Game Selected: ${title}`, 'success');
-    });
-  });
-
-  // Mode Switch Tabs
   const modeAuto = document.getElementById('mode-auto');
   const modeManual = document.getElementById('mode-manual');
 
@@ -330,7 +311,6 @@ document.addEventListener('DOMContentLoaded', () => {
     showToast('Mode set to Manual Configuration', 'cyan');
   });
 
-  // Copy License Button
   const btnCopyLicense = document.getElementById('btn-copy-license');
   const licBtnText = document.getElementById('lic-btn-text');
 
@@ -345,15 +325,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => licBtnText.textContent = 'LICENSE COPIED', 2500);
   });
 
-  // Open Direct Cheat Menu Button
   document.getElementById('btn-open-menu-direct').addEventListener('click', () => {
     playSound('click');
     modalCheatMenu.classList.remove('hidden');
-    showToast('Opened In-Game Cheat Overlay Menu', 'cyan');
+    showToast('Opened BGMI Cheat Menu Overlay', 'cyan');
   });
 
   // ==========================================================================
-  // 7. STEP 3: INJECTION SIMULATION ENGINE
+  // 7. STEP 3: BGMI INJECTION ENGINE
   // ==========================================================================
   const btnLaunchGame = document.getElementById('btn-launch-game');
   const injectProgressFill = document.getElementById('inject-progress-fill');
@@ -363,28 +342,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const injectStatusSub = document.getElementById('inject-status-sub');
   const btnCancelInjection = document.getElementById('btn-cancel-injection');
 
-  let injectionTimer = null;
-
   btnLaunchGame.addEventListener('click', () => {
     playSound('inject');
     switchScreen(screenInjecting);
 
-    // Reset Injection UI
     injectProgressFill.style.width = '0%';
     injectPercentText.textContent = '0%';
     injectStatusTitle.textContent = 'LAUNCHING GAME...';
-    injectStatusSub.textContent = 'INJECTING ACTIVE PREMIUM LOADER...';
+    injectStatusSub.textContent = 'INJECTING BGMI ACTIVE PREMIUM LOADER...';
     btnCancelInjection.classList.remove('hidden');
     terminalConsole.innerHTML = '';
 
     const logs = [
-      { text: '[INIT] Starting Gyro X Bypass Kernel Engine...', delay: 300, class: 'text-cyan' },
+      { text: '[INIT] Starting Gyro X BGMI Kernel Driver v3.5...', delay: 300, class: 'text-cyan' },
       { text: '[KERNEL] Attaching ring-0 hardware spoofer driver...', delay: 800, class: 'text-cyan' },
-      { text: '[ANTICHEAT] Bypassing EAC / BattlEye / Tencent Protector... SUCCESS', delay: 1500, class: 'text-green' },
+      { text: '[ANTICHEAT] Bypassing Tencent Protect / EAC... SUCCESS', delay: 1500, class: 'text-green' },
       { text: '[MEMORY] Allocating virtual memory block 0x7FFF98A2...', delay: 2200, class: 'text-orange' },
-      { text: '[HOOK] Direct3D 11 Render Hook Attached!', delay: 2800, class: 'text-cyan' },
+      { text: '[HOOK] Direct3D 11 Render Hook Attached to BGMI Process!', delay: 2800, class: 'text-cyan' },
       { text: '[PATCH] Injecting Gyro X Core DLL module into target process...', delay: 3500, class: 'text-orange' },
-      { text: '[COMPLETE] INJECTION SUCCESSFUL! Cheat Menu Ready.', delay: 4200, class: 'text-green' }
+      { text: '[COMPLETE] INJECTION SUCCESSFUL! BGMI Cheat Menu Ready.', delay: 4200, class: 'text-green' }
     ];
 
     let currentProgress = 0;
@@ -410,13 +386,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (logItem.text.includes('COMPLETE')) {
           playSound('success');
           injectStatusTitle.textContent = 'INJECTION COMPLETE!';
-          injectStatusSub.textContent = 'OPENING CHEAT MENU OVERLAY...';
+          injectStatusSub.textContent = 'OPENING BGMI CHEAT OVERLAY...';
           btnCancelInjection.classList.add('hidden');
 
           setTimeout(() => {
             switchScreen(screenDashboard);
             modalCheatMenu.classList.remove('hidden');
-            showToast('Cheat Overlay Activated in Game Window!', 'success');
+            showToast('BGMI Cheat Overlay Activated!', 'success');
           }, 1500);
         }
       }, logItem.delay);
@@ -430,7 +406,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // ==========================================================================
-  // 8. STEP 4: IN-GAME OVERLAY MODAL GUI CONTROLLER
+  // 8. STEP 4: OVERLAY MODAL
   // ==========================================================================
   const btnCloseCheatModal = document.getElementById('btn-close-cheat-modal');
   const sidebarTabs = document.querySelectorAll('.sidebar-tab');
@@ -439,7 +415,7 @@ document.addEventListener('DOMContentLoaded', () => {
   btnCloseCheatModal.addEventListener('click', () => {
     playSound('click');
     modalCheatMenu.classList.add('hidden');
-    showToast('Overlay GUI Hidden (Press Insert to toggle)', 'cyan');
+    showToast('Overlay Hidden (Press Insert to toggle)', 'cyan');
   });
 
   document.getElementById('btn-hide-gui').addEventListener('click', () => {
@@ -447,7 +423,6 @@ document.addEventListener('DOMContentLoaded', () => {
     modalCheatMenu.classList.add('hidden');
   });
 
-  // Keyboard shortcut toggle modal (Insert key)
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Insert') {
       playSound('click');
@@ -455,7 +430,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // Sidebar Tab Switcher
   sidebarTabs.forEach(tab => {
     tab.addEventListener('click', () => {
       playSound('click');
@@ -474,53 +448,40 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Range Slider values
-  const rngFov = document.getElementById('rng-fov');
-  const valFov = document.getElementById('val-fov');
-  const rngSmooth = document.getElementById('rng-smooth');
-  const valSmooth = document.getElementById('val-smooth');
-
-  rngFov.addEventListener('input', (e) => {
-    valFov.textContent = e.target.value + ' px';
+  document.getElementById('rng-fov').addEventListener('input', (e) => {
+    document.getElementById('val-fov').textContent = e.target.value + ' px';
   });
 
-  rngSmooth.addEventListener('input', (e) => {
-    valSmooth.textContent = e.target.value;
-  });
-
-  // Save Config Button
   document.getElementById('btn-save-cfg').addEventListener('click', () => {
     playSound('success');
-    showToast('Cheat Configuration Saved to Disk (gyro_x_config.json)', 'success');
+    showToast('BGMI Cheat Configuration Saved to Disk', 'success');
   });
 
-  // Spoofer Button
   document.getElementById('btn-spoof-now').addEventListener('click', () => {
     playSound('inject');
-    showToast('Re-spoofing Motherboard UUID, MAC, & HWID...', 'cyan');
+    showToast('Re-spoofing HWID, MAC, & SMBIOS...', 'cyan');
     setTimeout(() => {
       playSound('success');
-      showToast('HWID Serials Randomly Generated & Virtualized!', 'success');
+      showToast('HWID Serials Virtualized Successfully!', 'success');
     }, 1500);
   });
 
   // ==========================================================================
-  // 9. LIVE ESP CANVAS RADAR PREVIEW ANIMATION
+  // 9. LIVE ESP CANVAS RADAR PREVIEW
   // ==========================================================================
   const espCanvas = document.getElementById('esp-preview-canvas');
   if (espCanvas) {
     const espCtx = espCanvas.getContext('2d');
 
     let targets = [
-      { x: 100, y: 70, name: 'Enemy_Player_1 [142m]', hp: 85, dir: 1 },
-      { x: 300, y: 50, name: 'VIP_Sniper [88m]', hp: 40, dir: -1 },
+      { x: 100, y: 70, name: 'BGMI_Enemy_1 [142m]', hp: 85, dir: 1 },
+      { x: 300, y: 50, name: 'BGMI_VIP_Pro [88m]', hp: 40, dir: -1 },
       { x: 450, y: 90, name: 'Bot_Guard [210m]', hp: 100, dir: 1 }
     ];
 
     function drawEspPreview() {
       espCtx.clearRect(0, 0, espCanvas.width, espCanvas.height);
 
-      // Grid background lines
       espCtx.strokeStyle = 'rgba(0, 229, 255, 0.08)';
       espCtx.lineWidth = 1;
       for (let x = 0; x < espCanvas.width; x += 30) {
@@ -530,7 +491,6 @@ document.addEventListener('DOMContentLoaded', () => {
         espCtx.stroke();
       }
 
-      // Checkbox states
       const drawBox = document.getElementById('chk-player-box').checked;
       const drawName = document.getElementById('chk-player-name').checked;
       const drawHp = document.getElementById('chk-health-bar').checked;
@@ -565,9 +525,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
 
-      // Center Crosshair Dot
       if (drawCrosshair) {
-        espCtx.fillStyle = '#ff5e00';
+        espCtx.fillStyle = '#ff3300';
         espCtx.beginPath();
         espCtx.arc(espCanvas.width / 2, espCanvas.height / 2, 3, 0, Math.PI * 2);
         espCtx.fill();

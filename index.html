@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GYRO X CHEAT LOADER | Premium Undetected Companion</title>
-  <meta name="description" content="Official Gyro X Cheat Loader web interface with key verification, game injection, and advanced ESP visual companion features.">
+  <title>GYRO X CHEAT | BGMI Premium Loader</title>
+  <meta name="description" content="Official Gyro X Cheat Loader web interface with key verification, BGMI injection engine, and advanced ESP companion features.">
   
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,20 +16,22 @@
 </head>
 <body class="dark-theme">
 
-  <!-- DYNAMIC CYBER PARTICLES BACKGROUND CANVAS -->
-  <canvas id="cyber-bg-canvas" class="bg-canvas"></canvas>
+  <!-- FIRE & ICE BACKGROUND CANVAS -->
+  <canvas id="fire-ice-canvas" class="bg-canvas"></canvas>
   
-  <!-- GLOW ORB ACCENTS -->
-  <div class="glow-orb orb-orange"></div>
-  <div class="glow-orb orb-blue"></div>
+  <!-- DUAL ELEMENT GLOW ORB ACCENTS -->
+  <div class="glow-orb orb-fire-top"></div>
+  <div class="glow-orb orb-ice-top"></div>
+  <div class="glow-orb orb-fire-bottom"></div>
+  <div class="glow-orb orb-ice-bottom"></div>
 
-  <!-- FLOATING SOUND SFX BUTTON -->
+  <!-- FLOATING SFX TOGGLE BUTTON -->
   <button id="btn-sound-toggle" class="sound-floating-btn" title="Toggle Futuristic Audio SFX">
     <i class="fa-solid fa-volume-high" id="sound-icon"></i>
     <span id="sound-status-text">SFX ON</span>
   </button>
 
-  <!-- MAIN CONTAINER -->
+  <!-- MAIN VIEWPORT -->
   <main class="app-viewport">
 
     <!-- ========================================== -->
@@ -38,14 +40,13 @@
     <section id="screen-login" class="screen-view active">
       <div class="login-card-container">
         
-        <!-- HEADER & BRANDING -->
+        <!-- OFFICIAL GYRO X LOGO BRANDING -->
         <header class="branding-header">
-          <div class="logo-wrapper">
-            <img src="logo.png" alt="Gyro X Cheat Logo" class="brand-logo-img" id="login-logo-img" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&auto=format&fit=crop&q=80'">
-            <div class="logo-aura-glow"></div>
+          <div class="logo-hero-frame">
+            <img src="logo.png" alt="Gyro X Cheat Official Logo" class="brand-logo-img" id="login-logo-img">
+            <div class="logo-fire-ice-aura"></div>
           </div>
-          <h1 class="brand-title">GYRO<span class="highlight-x">X</span> CHEAT</h1>
-          <div class="tier-pill">PREMIUM</div>
+          <div class="tier-pill">PREMIUM LOADER</div>
         </header>
 
         <!-- LOGIN FORM CARD -->
@@ -87,18 +88,18 @@
           </div>
 
           <div class="form-footer-meta">
-            <span class="security-tag"><i class="fa-solid fa-shield-halved"></i> secured by Gyro X Protection Engine</span>
+            <span class="security-tag"><i class="fa-solid fa-shield-halved"></i> secure by Gyro X Cheat Loader</span>
           </div>
         </div>
 
         <footer class="app-copyright">
-          © 2026 Gyro X Cheat Loader • All Rights Reserved
+          © 2026 Gyro X Cheat Loader
         </footer>
       </div>
     </section>
 
     <!-- ========================================== -->
-    <!-- STEP 2: LOADER DASHBOARD & GAME SELECTOR   -->
+    <!-- STEP 2: BGMI COMPANION DASHBOARD           -->
     <!-- ========================================== -->
     <section id="screen-dashboard" class="screen-view hidden">
       <div class="dashboard-container">
@@ -107,7 +108,7 @@
         <header class="dash-navbar">
           <div class="dash-brand">
             <img src="logo.png" alt="Gyro X Logo" class="dash-logo-mini">
-            <span class="dash-title">GYRO<span class="highlight-x">X</span> LOADER</span>
+            <span class="dash-title">GYRO<span class="highlight-x">X</span> BGMI LOADER</span>
           </div>
 
           <div class="user-status-strip">
@@ -126,67 +127,19 @@
           </div>
         </header>
 
-        <!-- GAME SELECTOR CAROUSEL CARDS -->
-        <div class="game-selector-section">
-          <h2 class="section-heading"><i class="fa-solid fa-gamepad"></i> SELECT TARGET GAME</h2>
-          
-          <div class="game-cards-grid">
-            <!-- Game 1: BGMI (Selected by Default) -->
-            <div class="game-card active" data-game="bgmi">
-              <div class="game-card-banner">
-                <img src="bgmi.png" alt="BGMI" class="game-icon-img" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=200&auto=format&fit=crop&q=80'">
-              </div>
-              <h3 class="game-title">BATTLEGROUNDS MOBILE INDIA</h3>
-              <p class="game-subtitle">COMPANION APP v3.5</p>
-              <div class="game-tags">
-                <span class="tag-status">ONLINE</span>
-                <span class="tag-ver">v3.5.0</span>
-              </div>
+        <!-- BGMI ONLY LAUNCH CARD (MATCHING USER SCREENSHOT 2) -->
+        <div class="single-game-section">
+          <div class="bgmi-hero-card">
+            <div class="bgmi-card-frame">
+              <img src="bgmi.png" alt="BATTLEGROUNDS MOBILE INDIA" class="bgmi-icon-large" onerror="this.src='https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&auto=format&fit=crop&q=80'">
             </div>
+            
+            <h2 class="bgmi-main-title">BATTLEGROUNDS MOBILE INDIA</h2>
+            <p class="bgmi-sub-title">COMPANION APP v3.5 VIP</p>
 
-            <!-- Game 2: PUBG MOBILE -->
-            <div class="game-card" data-game="pubg">
-              <div class="game-card-banner">
-                <div class="game-icon-placeholder pubg-icon">
-                  <i class="fa-solid fa-crosshairs"></i>
-                </div>
-              </div>
-              <h3 class="game-title">PUBG MOBILE GLOBAL</h3>
-              <p class="game-subtitle">VIP COMPANION</p>
-              <div class="game-tags">
-                <span class="tag-status">ONLINE</span>
-                <span class="tag-ver">v3.4.2</span>
-              </div>
-            </div>
-
-            <!-- Game 3: APEX LEGENDS -->
-            <div class="game-card" data-game="apex">
-              <div class="game-card-banner">
-                <div class="game-icon-placeholder apex-icon">
-                  <i class="fa-solid fa-shield-virus"></i>
-                </div>
-              </div>
-              <h3 class="game-title">APEX LEGENDS</h3>
-              <p class="game-subtitle">STEALTH EDITION</p>
-              <div class="game-tags">
-                <span class="tag-status">ONLINE</span>
-                <span class="tag-ver">v2.9.1</span>
-              </div>
-            </div>
-
-            <!-- Game 4: VALORANT -->
-            <div class="game-card" data-game="valorant">
-              <div class="game-card-banner">
-                <div class="game-icon-placeholder valorant-icon">
-                  <i class="fa-solid fa-skull"></i>
-                </div>
-              </div>
-              <h3 class="game-title">VALORANT COMPANION</h3>
-              <p class="game-subtitle">TRIGGERBOT & ESP</p>
-              <div class="game-tags">
-                <span class="tag-status">SAFE</span>
-                <span class="tag-ver">v1.8.0</span>
-              </div>
+            <div class="bgmi-meta-pills">
+              <span class="pill-green"><i class="fa-solid fa-circle"></i> SAFE & ONLINE</span>
+              <span class="pill-cyan"><i class="fa-solid fa-code-version"></i> v3.5.0 KERNEL</span>
             </div>
           </div>
         </div>
@@ -196,18 +149,18 @@
           <!-- MODE SWITCH TABS -->
           <div class="mode-switch-container">
             <button type="button" class="mode-tab active" id="mode-auto">
-              <i class="fa-solid fa-gear"></i> AUTO INJECT
+              <i class="fa-solid fa-gear"></i> AUTO
             </button>
             <button type="button" class="mode-tab" id="mode-manual">
-              <i class="fa-solid fa-sliders"></i> MANUAL CONFIG
+              <i class="fa-solid fa-sliders"></i> MANUAL
             </button>
           </div>
 
-          <!-- LAUNCH & UTILITY BUTTONS -->
+          <!-- LAUNCH BUTTONS -->
           <div class="action-buttons-group">
             <button id="btn-launch-game" class="btn-action-green btn-play">
               <i class="fa-solid fa-play"></i>
-              <span class="btn-label">PLAY / INJECT NOW</span>
+              <span class="btn-label">PLAY</span>
             </button>
 
             <button id="btn-copy-license" class="btn-action-outline btn-copy-lic">
@@ -236,15 +189,15 @@
     </section>
 
     <!-- ========================================== -->
-    <!-- STEP 3: INJECTION & MEMORY PATCH SCREEN    -->
+    <!-- STEP 3: INJECTION SCREEN (BGMI)            -->
     <!-- ========================================== -->
     <section id="screen-injecting" class="screen-view hidden">
       <div class="injection-container">
         
-        <!-- DUAL RING SPINNING LOADER -->
+        <!-- FIRE & ICE DUAL SPINNING RINGS -->
         <div class="gyro-spinner-wrapper">
-          <div class="gyro-ring ring-outer"></div>
-          <div class="gyro-ring ring-inner"></div>
+          <div class="gyro-ring ring-fire"></div>
+          <div class="gyro-ring ring-ice"></div>
           <img src="logo.png" alt="Gyro X Logo" class="gyro-spinner-logo">
         </div>
 
@@ -257,9 +210,9 @@
         </div>
         <span id="inject-percent-text" class="percent-text">0%</span>
 
-        <!-- LIVE TERMINAL CONSOLE LOGS -->
+        <!-- LIVE TERMINAL LOGS -->
         <div class="terminal-log-box" id="terminal-console">
-          <div class="log-line text-cyan">[INIT] Starting Gyro X Bypass Kernel Engine...</div>
+          <div class="log-line text-cyan">[INIT] Starting Gyro X BGMI Kernel Driver...</div>
         </div>
 
         <button id="btn-cancel-injection" class="btn-cancel-inject hidden">
@@ -274,11 +227,11 @@
     <div id="modal-cheat-menu" class="modal-overlay hidden">
       <div class="cheat-window-dialog" id="cheat-dialog">
         
-        <!-- WINDOW HEADER BAR (DRAGGABLE) -->
+        <!-- WINDOW HEADER -->
         <div class="window-header" id="cheat-window-handle">
           <div class="window-title-brand">
             <img src="logo.png" alt="Logo" class="window-logo">
-            <span class="window-title">GYRO X CHEAT LOADER</span>
+            <span class="window-title">GYRO X BGMI CHEAT LOADER</span>
             <span class="version-badge">v3.5 VIP</span>
           </div>
           
@@ -296,10 +249,10 @@
               <i class="fa-solid fa-eye"></i> Visuals
             </button>
             <button class="sidebar-tab" data-tab="tab-aim">
-              <i class="fa-solid fa-crosshairs"></i> Aim Bot
+              <i class="fa-solid fa-crosshairs"></i> Aim
             </button>
             <button class="sidebar-tab" data-tab="tab-misc">
-              <i class="fa-solid fa-sliders"></i> Misc Mods
+              <i class="fa-solid fa-sliders"></i> Misc
             </button>
             <button class="sidebar-tab" data-tab="tab-spoofer">
               <i class="fa-solid fa-shield-halved"></i> Spoofer
@@ -324,7 +277,7 @@
                   </label>
 
                   <label class="toggle-control">
-                    <input type="checkbox" id="chk-player-name" checked>
+                    <input type="checkbox" id="chk-player-name">
                     <span class="toggle-checkbox"></span>
                     <span class="toggle-label">Player Name</span>
                   </label>
@@ -338,19 +291,19 @@
                   <label class="toggle-control">
                     <input type="checkbox" id="chk-distance" checked>
                     <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Distance (Meters)</span>
+                    <span class="toggle-label">Distance</span>
                   </label>
 
                   <label class="toggle-control">
-                    <input type="checkbox" id="chk-skeleton">
+                    <input type="checkbox" id="chk-mander" checked>
                     <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Skeleton ESP</span>
+                    <span class="toggle-label">Mander</span>
                   </label>
 
                   <label class="toggle-control">
-                    <input type="checkbox" id="chk-3d-box">
+                    <input type="checkbox" id="chk-players">
                     <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">3D Corner Box</span>
+                    <span class="toggle-label">Players</span>
                   </label>
                 </div>
 
@@ -371,7 +324,7 @@
                   </label>
 
                   <label class="toggle-control">
-                    <input type="checkbox" id="chk-crosshair-dot" checked>
+                    <input type="checkbox" id="chk-crosshair-dot">
                     <span class="toggle-checkbox"></span>
                     <span class="toggle-label">Crosshair Dot</span>
                   </label>
@@ -429,21 +382,12 @@
                     </div>
                     <input type="range" id="rng-fov" min="30" max="300" value="120" class="range-slider">
                   </div>
-
-                  <div class="slider-control-group">
-                    <div class="slider-header">
-                      <span>Smooth Speed</span>
-                      <span id="val-smooth">7.5</span>
-                    </div>
-                    <input type="range" id="rng-smooth" min="1" max="20" step="0.5" value="7.5" class="range-slider">
-                  </div>
                 </div>
 
                 <div class="config-column">
-                  <h4 class="col-header header-blue">TARGETING OPTIONS</h4>
-                  
+                  <h4 class="col-header header-blue">TARGETING</h4>
                   <div class="radio-select-group">
-                    <span class="radio-group-title">AIM BONE TARGET:</span>
+                    <span class="radio-group-title">AIM BONE:</span>
                     <label class="radio-option">
                       <input type="radio" name="aim-bone" value="head" checked>
                       <span class="radio-custom"></span> Head (Critical)
@@ -453,18 +397,6 @@
                       <span class="radio-custom"></span> Chest / Body
                     </label>
                   </div>
-
-                  <label class="toggle-control">
-                    <input type="checkbox" id="chk-ignore-knocked" checked>
-                    <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Ignore Knocked Players</span>
-                  </label>
-
-                  <label class="toggle-control">
-                    <input type="checkbox" id="chk-auto-fire">
-                    <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Auto Fire / Triggerbot</span>
-                  </label>
                 </div>
               </div>
             </div>
@@ -477,17 +409,12 @@
                   <label class="toggle-control">
                     <input type="checkbox" id="chk-ipad-view" checked>
                     <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Wide iPad FOV View</span>
-                  </label>
-                  <label class="toggle-control">
-                    <input type="checkbox" id="chk-no-fog">
-                    <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Clear Sky / Remove Fog</span>
+                    <span class="toggle-label">Wide iPad FOV</span>
                   </label>
                   <label class="toggle-control">
                     <input type="checkbox" id="chk-high-fps" checked>
                     <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Unlock 90 / 120 Ultra FPS</span>
+                    <span class="toggle-label">Unlock 90 / 120 FPS</span>
                   </label>
                 </div>
                 <div class="config-column">
@@ -496,11 +423,6 @@
                     <input type="checkbox" id="chk-streamproof" checked>
                     <span class="toggle-checkbox"></span>
                     <span class="toggle-label">Streamproof OBS Hide</span>
-                  </label>
-                  <label class="toggle-control">
-                    <input type="checkbox" id="chk-fast-land">
-                    <span class="toggle-checkbox"></span>
-                    <span class="toggle-label">Fast Parachute Landing</span>
                   </label>
                 </div>
               </div>
@@ -528,7 +450,7 @@
 
         </div>
 
-        <!-- WINDOW FOOTER BAR -->
+        <!-- WINDOW FOOTER -->
         <div class="window-footer">
           <span class="footer-status"><i class="fa-solid fa-circle-notch fa-spin"></i> Driver Attached • 144 FPS</span>
           <div class="footer-actions">
@@ -545,7 +467,7 @@
 
   </main>
 
-  <!-- APPS LOGIC SCRIPT -->
+  <!-- SCRIPT -->
   <script src="main.js"></script>
 </body>
 </html>
